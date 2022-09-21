@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*1. "Придумайте як описати та опишіть такі класи:
+        - Батарейка (>=3 властивості, >=1 метод)
+        - Стіл (>= 4 властивості, >= 0 методів)
+        - Двері (>= 3 властивості, >= 2 метода)
+        - Кондиціонер (>= 5 властивостей, >= 4 методи)"*/
+        function random(min, max){
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let r = random(0, 1);
+
+        class rectangularObject{
+            constructor(width, length, material, brand){
+                this.width = width;
+                this.length = length;
+                this.material = material;
+                this.brand = brand;
+            }
+            area(width, length){
+                console.log(this.width * this.length + ' m^2');
+            }
+            openClose(){
+                if(r == 1){
+                    console.log('You can some privacy here.')
+            }else{
+                    console.log('You have no privacy here.');
+                }
+            }
+        }
+
+        const table = new rectangularObject(2, 3, 'MDF', 'JYSK');
+        table.area();
+        const door = new rectangularObject(0.8, 2, 'wood', 'epicentr');
+
+        class battery{
+            constructor(capacity, type, brand){
+                this.capacity = capacity;
+                this.type = type;
+                this.brand = brand;
+            }
+
+            charge(capacity){
+                if(capacity >= 2000 && r == 1){
+                    console.log('You can charge your battery.')
+            }else{
+                    console.log('You have a non rechargeble battery.');
+                }
+            }
+        }
+
+        const bat1 = new battery(5000, 'Li-Ion', 'Duracell')
+
+        let t = random(0, 55);
+        class conditioner{
+            constructor(brand, price, numberOfModes, minT, maxT){
+                this.brand = brand;
+                this.price = price;
+                this.numberOfModes = numberOfModes;
+                this.minT = minT;
+                this.maxT = maxT;
+            }
+
+            cool(maxT){
+                if(t < maxT){
+                    console.log('You can cool the room.')
+                }else{
+                    console.log('You cannot cool the room, outside temperature is too high.')
+                }
+            }
+            warm(minT){
+                if(t < minT){
+                    console.log('You can warm the room.')
+                }else{
+                    console.log('You cannot warm the room, outside temperature is too low.')
+                }
+            }
+            fan(numberOfModes){
+                switch(numberOfModes){
+                    case 1: console.log('You can fan the room on level 1 power')
+                    break;
+                    case 2: console.log('You can fan the room on level 2 power')
+                    break;
+                    case 3: console.log('You can fan the room on level 3 power')
+                    break;
+                    case 4: console.log('You can fan the room on level 4 power')
+                    break;
+                    case 5: console.log('You can fan the room on level 5 power')
+                    break;
+                }
+            }
+        }
+
+        const myCon = new conditioner('CH', 3000, 4, 5, 35);
+
+    </script>
+</body>
+</html>

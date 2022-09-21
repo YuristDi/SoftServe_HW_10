@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            font-size: 18px;
+            padding: 0.5%;
+        }
+        input{
+            font-family: sans-serif;
+            font-size: 18px;
+            padding: 0.5%;
+            min-width: 30%;
+        }
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>Введіть серію та номер паспорту:</p>
+    <input type = "text" id = "passport-ser-num" required></br>
+    <span></span>
+    <p>Введіть номер телефону:</p>
+    <input type = "tel" id = "telephone-num" required></br>
+    <span></span>
+    <p>Введіть ідентифікаційний код:</p>
+    <input type = "number" min="0000000000" max="999999999" id = "IDcode-num" required></br>
+    <span></span>
+
+    <script>
+        /*2. "Напишіть функцію, яка перевірятиме правильність введення даних:
+        - Серія та номер паспорта 
+        - Номер телефону 
+        - Ідентифікаційний код
+        */
+       let spanList = document.querySelectorAll('span');
+       let pasNum = '';
+       let telNum = '';
+       let IDnum = 0;
+
+       let mustIncludeNum = '1234567890';
+    //    let mustIncludeLet = 'ETIOPAHKXCBM';
+
+        let inputs = {
+            passport: document.getElementById('passport-ser-num'),
+            tel: document.getElementById('telephone-num'),
+            IDcode: document.getElementById('IDcode-num')};
+
+        inputs.passport.addEventListener('blur', (ev) => { 
+            pasNum = ev.target.value;
+
+            if(pasNum.length < 8 || pasNum.length > 9){
+                spanList[0].innerHTML = 'Серія та номер паспорту містить не менше 8 символів';
+                return;
+            }
+            spanList[0].innerHTML = '';
+        });
+
+        inputs.tel.addEventListener('blur', (ev) => { 
+            telNum = ev.target.value;
+            let mustIncludeTel = '+1234567890';
+            const k = ev.key;
+            let telNumSplited = telNum.split('');
+            if(telNum.length !== 13 && telNumSplited[0] !== '+' && !mustIncludeTel.includes(k)){
+                spanList[1].innerHTML = 'Номер телефону має містити 13 символів та починатися з "+"';
+                return;
+            }
+            spanList[1].innerHTML = '';
+        });
+
+        inputs.IDcode.addEventListener('blur', (ev) => { 
+            IDNum = ev.target.value;
+            const k = ev.key;
+            if(IDNum.length !== 10 && !mustIncludeNum.includes(k)){
+                spanList[2].innerHTML = 'Ідентифікаційний код має містити 10 цифр';
+                return;
+            }
+            spanList[2].innerHTML = '';
+        });
+        
+
+    </script>
+</body>
+</html>
